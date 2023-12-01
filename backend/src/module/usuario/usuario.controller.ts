@@ -18,6 +18,11 @@ export class UsuarioController {
     return this.userModel.findUsuario({ id: id });
   }
 
+  @Get()
+  async getAllUsuario() {
+    return this.userModel.findAll();
+  }
+
   @Delete('/:id')
   async deleteUsuario(@Param('id') id: string): Promise<Usuario> {
     return this.userModel.deleteUsuario({ id: id });

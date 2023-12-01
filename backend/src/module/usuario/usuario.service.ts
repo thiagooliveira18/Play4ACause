@@ -20,6 +20,10 @@ export class UsuarioService {
     });
   }
 
+  async findAll() {
+    return this.prisma.usuario.findMany();
+  }
+
   async deleteUsuario(
     usuarioWhereUniqueInput: Prisma.UsuarioWhereUniqueInput,
   ): Promise<Usuario> {
