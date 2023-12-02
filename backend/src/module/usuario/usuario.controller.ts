@@ -13,9 +13,14 @@ export class UsuarioController {
     return this.userModel.createUsuario(data);
   }
 
-  @Get('/:id')
+  @Get('/byid/:id')
   async getUsuarioById(@Param('id') id: string): Promise<Usuario> {
-    return this.userModel.findUsuario({ id: id });
+    return this.userModel.findUsuarioById(id);
+  }
+
+  @Get('/email/:email')
+  async getUsuarioByEmail(@Param('email') email: string): Promise<Usuario> {
+    return this.userModel.findUsuarioByEmail(email);
   }
 
   @Get()
