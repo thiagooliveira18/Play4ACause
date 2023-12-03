@@ -6,20 +6,17 @@ import { Usuario, Prisma } from '@prisma/client';
 export class UsuarioService {
   constructor(private prisma: PrismaService) {}
 
-  async createUsuario(data: Prisma.UsuarioCreateInput): Promise<Usuario> {
+  async createUsuario(data: Usuario): Promise<Usuario> {
     const existsUser = await this.prisma.usuario.findFirst({
       where: {
         email: data.email,
       },
     });
-
     if (existsUser) {
       throw new Error('Já existe um usuário com este e-mail');
     }
-
-    return await this.prisma.usuario.create({
-      data,
-    });
+    const createUser = await this.prisma.usuario.create({ data });
+    return createUser;
   }
 
   async findUsuarioById(id: string): Promise<Usuario> {
