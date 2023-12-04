@@ -12,14 +12,21 @@ export class AuthService {
   async signIn(email: string, senha: string): Promise<any> {
     const usuario = await this.usuarioService.findUsuarioByEmail(email);
 
-    if (usuario?.senha !== senha) {
+    if (usuario.senha !== senha && usuario.email !== email) {
       throw new UnauthorizedException();
     }
-
-    const payload = { sub: usuario.id, email: usuario.email };
-
+    const payload = { id: usuario.id, email: usuario.email };
     return {
       acess_token: await this.jwtService.signAsync(payload),
     };
+  }
+
+  async verifyToken(data: { token: string }): Promise<boolean> {
+    try {
+      await this.jwtService.verifyAsync(data.token);
+    } catch (err) {
+      throw new Error(err);
+    }
+    return true;
   }
 }

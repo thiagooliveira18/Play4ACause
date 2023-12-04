@@ -7,7 +7,12 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async signIn(@Body() signInDto: Record<string, any>) {
+  signIn(@Body() signInDto: Record<string, any>) {
     return this.authService.signIn(signInDto.email, signInDto.senha);
+  }
+
+  @Post('profile')
+  async validateProfile(@Body() data: { token: string }) {
+    return this.authService.verifyToken(data);
   }
 }
