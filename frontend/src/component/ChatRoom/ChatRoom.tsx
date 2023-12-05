@@ -11,7 +11,6 @@ interface Props {
     id_usuario: string | any;
     id_chat: string | any;
     nome_usuario: string | any;
-    msgs: any[],
 }
 
 interface MsgDataTypes {
