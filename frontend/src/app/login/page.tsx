@@ -7,6 +7,7 @@ import Link from 'next/link';
 import UsuarioModel from '@/model/UsuarioModel';
 
 import loginUsuario from '@/api/usuario/loginUsuario';
+import { serverAction } from '@/api/cookies/createCookie';
 
 export default function Login() {    
 
@@ -14,7 +15,8 @@ export default function Login() {
 
     const { register, handleSubmit } = useForm<UsuarioModel>();
     const onSubmit: SubmitHandler<UsuarioModel> = async (data) => {
-        let token = await loginUsuario(data);
+        let token = await loginUsuario(data);        
+        serverAction(token.toString());
         router.push('/'+data.email);
     }
 
