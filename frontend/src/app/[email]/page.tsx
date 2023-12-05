@@ -13,7 +13,7 @@ import ChatModel from "@/model/ChatModel";
 
 import ChatRoom from "@/component/ChatRoom/ChatRoom";
 import NoneChat from "@/component/NoneChat/NoneChat";
-
+import ChatButton from "@/component/ChatButton/ChatButton";
 
 export default function Home({ params }) {
   const router = useRouter();
@@ -96,7 +96,7 @@ export default function Home({ params }) {
                   {usuario?.usuario}
               </div>
               <div>
-                  
+              {chats.map((chat) => <ChatButton key={chat.id} id={chat.id} nome={chat.nome} event={setChangeChat} />)}
               </div>
           </div>
           <div className={`
