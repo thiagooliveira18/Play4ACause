@@ -9,7 +9,7 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway()
+@WebSocketGateway(81, { cors: true })
 export class MyGateway
   implements OnModuleInit, OnGatewayConnection, OnGatewayDisconnect
 {
@@ -30,9 +30,6 @@ export class MyGateway
 
   @SubscribeMessage('newMessage')
   onNewMessage(@MessageBody() body: any): void {
-    this.server.emit('onMessage', {
-      msg: 'newMessage',
-      content: body,
-    });
+    this.server.emit('onMessage', body);
   }
 }

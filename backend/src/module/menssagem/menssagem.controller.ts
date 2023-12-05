@@ -35,7 +35,7 @@ export class MenssagemController {
   }
 
   @Get()
-  async findAllMsg() {
+  async getAllMsgs() {
     return this.msgModel.findAll();
   }
 }
