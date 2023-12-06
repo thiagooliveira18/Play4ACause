@@ -5,12 +5,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import createUsuario from '@/api/usuario/createUsuario';
 import UsuarioModel from "@/model/UsuarioModel";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function SingUp() {
-    const { register, handleSubmit } = useForm<UsuarioModel>();
+    const router = useRouter();
 
+    const { register, handleSubmit } = useForm<UsuarioModel>();
     const onSubmit: SubmitHandler<UsuarioModel> = (data) => {
         createUsuario(data);
+        router.push('/login');
     }
 
     return  (
