@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import getCookie from "@/api/cookies/getCookie";
+
+import getCookieAuth from "@/api/cookies/getCookie";
 import getUsuarioByEmail from "@/api/usuario/getUsuarioByEmail";
 import getAllChats from "@/api/chat/getAllChats";
 import verifyToken from "@/api/auth/verifyToken";
@@ -22,7 +23,7 @@ export default function Home({ params }) {
 
   async function verifyPermission() {
     try{
-      const token = await getCookie();
+      const token = await getCookieAuth();
       if(!token){
           throw new Error('token inválido.');
       }
@@ -95,8 +96,8 @@ export default function Home({ params }) {
               `}>
                   {usuario?.usuario}
               </div>
-              <div>
-              {chats.map((chat) => <ChatButton key={chat.id} id={chat.id} nome={chat.nome} event={setChangeChat} />)}
+              <div className="h-full">
+                {chats.map((chat) => <ChatButton key={chat.id} id={chat.id} nome={chat.nome} event={setChangeChat} />)}
               </div>
           </div>
           <div className={`

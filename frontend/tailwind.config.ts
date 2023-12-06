@@ -7,14 +7,13 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+    boxShadow: {
+      '2xl': '0px 60px 60px 10px rgba(0,0,0,0.4)',
+      '3xl': '0px 60px 60px 10px rgba(0,0,0,0.4)',
+      '4xl': '20px 60px 60px 10px rgba(0,0,0,0.4)',
     },
+    extend: {},
   },
-  plugins: [],
+  plugins: [],  
 }
 export default config

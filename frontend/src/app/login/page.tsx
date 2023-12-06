@@ -15,8 +15,8 @@ export default function Login() {
 
     const { register, handleSubmit } = useForm<UsuarioModel>();
     const onSubmit: SubmitHandler<UsuarioModel> = async (data) => {
-        let token = await loginUsuario(data);        
-        serverAction(token.toString());
+        let token:string = await loginUsuario(data);
+        serverAction(token);
         router.push('/'+data.email);
     }
 

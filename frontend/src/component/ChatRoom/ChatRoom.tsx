@@ -1,11 +1,12 @@
 "use client";
 
 import  React, { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+
 import createMessage from "@/api/menssagem/createMessage";
 
 import ChatInput from "../ChatInput/ChatInput";
 import Mensagem from "../Mensagem/Mensagem";
-
 
 interface Props {
     id_usuario: string | any;
@@ -21,6 +22,8 @@ interface MsgDataTypes {
 }
 
 export default function ChatRoom(props: Props){
+    const socket = io(`http://localhost:81`).connect();
+    
     const [ menssagens, setMenssagens ] = useState<MsgDataTypes[]>([]);
     const [ chatId, setChatId ] = useState('');
     
@@ -48,6 +51,16 @@ export default function ChatRoom(props: Props){
         });
     }
 
+    useEffect( () => { 
+        socket.on('onMessage', (data: MsgDataTypes) => {
+
+            setMenssagens([data, ...menssagens]);
+        });
+        return () => {
+            socket.disconnect();
+        }
+    }, [socket]);
+
     const handleSendMsg = (texto: string) => {
         const dataNow = new Date().toLocaleString('pt-BR').replace(', ', ' - ')
         const newMsg: MsgDataTypes = {
@@ -57,6 +70,7 @@ export default function ChatRoom(props: Props){
             data_hora: dataNow
         }
         handleCreateMsg(texto, dataNow);
+        socket.emit('newMessage',  newMsg );
     }
         
     return(

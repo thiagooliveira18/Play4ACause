@@ -1,8 +1,8 @@
 import axios from "axios";
-import { env } from "process";
+
 
 const instance = axios.create({
-    baseURL: `${env.BASE_URL_BACKEND}${env.PORT_BACKEND}/`, 
+    baseURL: 'http://localhost:8080', 
     headers: {
         'Acess-Control-Allow-Origin': '*',
         'Acess-Control-Allow-Methods': ['GET', 'PUT', 'POST', 'DELETE'],

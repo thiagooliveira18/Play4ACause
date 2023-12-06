@@ -1,7 +1,7 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import Image from "next/image";
 import send from '../../../public/send.svg';
-
-import { SubmitHandler, useForm } from "react-hook-form";
 
 interface Props {
     eventSend: Function;

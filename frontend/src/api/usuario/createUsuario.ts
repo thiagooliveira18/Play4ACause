@@ -3,7 +3,7 @@ import UsuarioModel from "@/model/UsuarioModel";
 
 export default async function createUsuario(usuarioModel: UsuarioModel) {
     try {
-        const response = await instance.post('usuario/', {
+        const response = await instance.post('/usuario/', {
             "email": usuarioModel.email,
             "usuario": usuarioModel.usuario,
             "senha": usuarioModel.senha

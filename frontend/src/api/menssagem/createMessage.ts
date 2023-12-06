@@ -3,7 +3,7 @@ import instance from "..";
 
 export default async function createMessage(menssagem: MenssagemModel){
     try {
-        const response = await instance.post('msg/', {
+        const response = await instance.post('/msg/', {
             "texto": menssagem.texto,
             "data_hora": menssagem.data_hora,
             "id_usuario": menssagem.id_autor,
