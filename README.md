@@ -87,3 +87,6 @@ $ npm install
 $ npm run start:dev
 
 ```
+
+# Autor
+- Thiago Oliveira dos Santos
