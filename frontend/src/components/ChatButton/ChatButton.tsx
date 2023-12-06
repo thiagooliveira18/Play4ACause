@@ -7,8 +7,8 @@ interface ChatProps {
 export default function ChatButton(props: ChatProps) {
     return(
         <button onClick={() =>{props.event({id: props.id, nome: props.nome})}}
-            className="w-full h-[30%] flex items-center">
-            <span className="w-full font-bold text-lg p-4 flex items-center border-b-2 border-black hover:bg-slate-300">
+            className="w-full py-5 px-4 flex border-b-2 border-black hover:bg-slate-300">
+            <span className="font-bold text-lg">
                 {props.nome}
             </span>
         </button>

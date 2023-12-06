@@ -12,11 +12,11 @@ import verifyToken from "@/api/auth/verifyToken";
 import UsuarioModel from "@/model/UsuarioModel";
 import ChatModel from "@/model/ChatModel";
 
-import ChatRoom from "@/component/ChatRoom/ChatRoom";
-import NoneChat from "@/component/NoneChat/NoneChat";
-import ChatButton from "@/component/ChatButton/ChatButton";
+import ChatRoom from "@/components/ChatRoom/ChatRoom";
+import NoneChat from "@/components/NoneChat/NoneChat";
+import ChatButton from "@/components/ChatButton/ChatButton";
 
-export default function Home({ params }) {
+export default function Home({ params } : any) {
   const router = useRouter();
 
   const email = params.email;
@@ -66,7 +66,7 @@ export default function Home({ params }) {
   useEffect(() => {
     getUsuario(email);
     getChats();
-  },[]);
+  },[email]);
 
   function varifyChat(){
     if (changeChat.nome === ''){
@@ -83,8 +83,8 @@ export default function Home({ params }) {
           w-screen h-screen
       `}>
           <div className={`
-              bg-slate-200
-              w-1/4 h-[90%] rounded-l-lg overflow-hidden
+              bg-slate-200 border-4 border-zinc-500
+              w-1/4 h-[90%] rounded-xl mr-5 overflow-hidden
               flex justify-start flex-col
               shadow-3xl
           `}>
@@ -96,14 +96,14 @@ export default function Home({ params }) {
               `}>
                   {usuario?.usuario}
               </div>
-              <div className="h-full">
+              <div>
                 {chats.map((chat) => <ChatButton key={chat.id} id={chat.id} nome={chat.nome} event={setChangeChat} />)}
               </div>
           </div>
           <div className={`
               bg-slate-200
               w-3/5 h-[90%]
-              rounded-r-xl border-l-4 border-zinc-500 overflow-hidden
+              rounded-xl border-4 border-zinc-500 overflow-hidden
               flex items-center flex-col
               shadow-2xl
           `}>

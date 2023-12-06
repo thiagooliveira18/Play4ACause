@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080', 
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL_BACKEND, 
     headers: {
         'Acess-Control-Allow-Origin': '*',
         'Acess-Control-Allow-Methods': ['GET', 'PUT', 'POST', 'DELETE'],

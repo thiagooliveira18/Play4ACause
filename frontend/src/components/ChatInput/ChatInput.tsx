@@ -16,7 +16,7 @@ export default function ChatInput(props: Props){
 
     return(
         <div className={`
-            w-full h-10
+            w-full h-28
             py-10
             border-t-2 border-l-2 border-black rounded-br-xl
             bg-neutral-600

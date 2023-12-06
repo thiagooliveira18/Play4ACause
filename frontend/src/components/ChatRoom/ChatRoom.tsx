@@ -22,7 +22,7 @@ interface MsgDataTypes {
 }
 
 export default function ChatRoom(props: Props){
-    const socket = io(`http://localhost:81`).connect();
+    const socket = io(`${process.env.NEXT_PUBLIC_PORT_SOCKET}`).connect();
     
     const [ menssagens, setMenssagens ] = useState<MsgDataTypes[]>([]);
     const [ chatId, setChatId ] = useState('');
@@ -30,8 +30,8 @@ export default function ChatRoom(props: Props){
     const id = props.id_chat;
 
     useEffect(()=> {
-        setChatId(props.id_chat);
-    },[chatId]);
+        setChatId(id);
+    },[chatId, id]);
 
     const handleClearMsgs: any = () => {
         if(id !== chatId) {
@@ -47,8 +47,20 @@ export default function ChatRoom(props: Props){
             texto: texto,
             data_hora: dataNow,
             id_autor: props.id_usuario,
-            id_chat: props.id_chat
+            id_chat: props.id_chat,
         });
+    }
+
+    const handleSendMsg = (texto: string) => {
+        const dataNow = new Date().toLocaleString('pt-BR').replace(', ', ' - ')
+        const newMsg: MsgDataTypes = {
+            chat_id: props.id_chat,
+            nome_usuario: props.nome_usuario,
+            texto: texto,
+            data_hora: dataNow,
+        }
+        handleCreateMsg(texto, dataNow);
+        socket.emit('newMessage',  newMsg );
     }
 
     useEffect( () => { 
@@ -59,30 +71,19 @@ export default function ChatRoom(props: Props){
         return () => {
             socket.disconnect();
         }
-    }, [socket]);
-
-    const handleSendMsg = (texto: string) => {
-        const dataNow = new Date().toLocaleString('pt-BR').replace(', ', ' - ')
-        const newMsg: MsgDataTypes = {
-            chat_id: props.id_chat,
-            nome_usuario: props.nome_usuario,
-            texto: texto,
-            data_hora: dataNow
-        }
-        handleCreateMsg(texto, dataNow);
-        socket.emit('newMessage',  newMsg );
-    }
-        
+    }, [socket, menssagens]);
+    
     return(
         <div className="w-full h-full flex flex-col items-center justify-end">
-            <div className="w-full h-full flex flex-col-reverse items-end p-4 overflow-y-auto">
+            <div className="w-full h-full flex flex-col-reverse p-4 overflow-y-auto">
                 {handleClearMsgs()}
-                {menssagens.map(({ chat_id, nome_usuario, texto, data_hora }, index) => 
+                {menssagens.map(({ chat_id, nome_usuario, texto, data_hora }, index) =>                         
                         <Mensagem
                             key={index}
                             nome={nome_usuario}
                             texto={texto}
                             data_hora={data_hora}
+                            isUser={props.nome_usuario !== nome_usuario ? false : true}
                         />
                 )}
             </div>
