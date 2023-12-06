@@ -22,7 +22,7 @@ interface MsgDataTypes {
 }
 
 export default function ChatRoom(props: Props){
-    const socket = io(`${process.env.NEXT_PUBLIC_PORT_SOCKET}`).connect();
+    const socket = io(`${process.env.NEXT_PUBLIC_BASE_URL_BACKEND}`).connect();
     
     const [ menssagens, setMenssagens ] = useState<MsgDataTypes[]>([]);
     const [ chatId, setChatId ] = useState('');
