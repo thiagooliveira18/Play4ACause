@@ -1,10 +1,10 @@
-# Play4ACause
+# Play For A Cause
 
 </br>
 
 ## Projeto
 
-Este projeto foi proposto pela Play 4 a Cause em um processo de Desenvolvedor, onde teria que desenvolver uma aplicação Full Stack de um chat utilizando protocolo de tempo real.
+Este projeto foi desenvolvido a partir do desafio proposto pela Play For a Cause, para participação de um processo seletivo para a vaga de Desenvolvedor Full-Stack. Neste projeto o objetivo era desenvolver uma aplicação de chat utilizando tecnologias relacionadas ao ecosistema Javascript e fazendo o uso de protocolo Real Time, além da integração com uma solução de banco de dados Postgre.
 
 </br>
 
@@ -16,7 +16,6 @@ Este projeto foi proposto pela Play 4 a Cause em um processo de Desenvolvedor, o
   - Axios
   - React Hook Form
   - Socket.io
-  - Docker
 
 - Para Backend:
   - NestJs
@@ -25,6 +24,7 @@ Este projeto foi proposto pela Play 4 a Cause em um processo de Desenvolvedor, o
 
 - Banco de Dados:
    - Postgre SQL
+- Docker
 
 </br>
 
@@ -38,9 +38,7 @@ NEXT_PUBLIC_BASE_URL_BACKEND=localhost:porta
 NEXT_PUBLIC_PORT_SOCKET=localhost:porta
 ```
 
-### Iniciando
-
-<br/>
+### Iniciando Localmente
 
 ```bash
 # Para acessar o arquivo Frontend
@@ -60,9 +58,22 @@ $ bun dev
 ```
 Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
 
+### Iniciando com Docker
+
+```bash
+# Para criar a imagem do projeto no Docker
+$ docker build -t nextjs-docker .
+
+# Para subir um container no Docker com a imagem do projeto
+$ docker run -p 3000:3000 nextjs-docker
+```
+
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
+
 </br>
 
 ## Backend
+
 ### Variávies de ambiente
 
 ```bash
@@ -72,9 +83,7 @@ PORT=porta_do_backend
 JWT_SECRET="Seu segredo do JWT"
 ```
 
-### Iniciando
-
-<br/>
+### Iniciando Localmente
 
 ```bash
 # Para acessar o arquivo Backend
@@ -86,6 +95,19 @@ $ npm install
 # Para iniciar a aplicação Backend
 $ npm run start:dev
 
+```
+
+### Iniciando com Docker
+
+```bash
+# Para acessar o arquivo Backend
+$ cd ./backend
+
+# Para criar a imagem do projeto no Docker
+$ docker build -t backend-nestjs .
+
+# Para subir um container no Docker com a imagem do projeto
+$ docker run -p 8080:8080 backend-nestjs
 ```
 
 # Autor
