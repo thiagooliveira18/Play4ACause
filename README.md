@@ -78,7 +78,7 @@ Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o
 
 ```bash
 # Arquivo padrão .env
-DATABASE_URL="postgresql://postgres:{password}@localhost:{port}/{database}?schema=public" #Porta 5432 é a porta padrão do PostgreSQL
+DATABASE_URL="postgresql://{username}:{password}@{url}:{port}/{database}?schema=public" #Porta 5432 é a porta padrão do PostgreSQL
 PORT=porta_do_backend
 JWT_SECRET="Seu segredo do JWT"
 ```
