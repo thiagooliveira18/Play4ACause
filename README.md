@@ -35,7 +35,6 @@ Este projeto foi desenvolvido a partir do desafio proposto pela Play For a Cause
 ```bash
 # Arquivo padrão .env.local
 NEXT_PUBLIC_BASE_URL_BACKEND=localhost:porta
-NEXT_PUBLIC_PORT_SOCKET=localhost:porta
 ```
 
 ### Iniciando Localmente
